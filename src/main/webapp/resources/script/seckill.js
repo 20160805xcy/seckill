@@ -79,6 +79,7 @@ var seckill = {
                 var format = event.strftime('秒杀倒计时: %D天 %H时 %M分 %S秒');
                 seckillBox.html(format);
             }).on('finish.countdown', function () {
+                //倒计时时间倒计时完成时,自动执行
                 //获取秒杀地址,控制显示逻辑,执行秒杀
                 seckill.handleSeckill(seckillId, seckillBox);
             });
