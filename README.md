@@ -22,3 +22,15 @@ second kill
 ![代码修改](https://raw.githubusercontent.com/20160805xcy/staticSource/master/seckill/image/%E4%BB%A3%E7%A0%81%E6%89%A7%E8%A1%8C%E9%A1%BA%E5%BA%8F%E4%BF%AE%E6%94%B9.png)
 
 2. 方法2:深度优化,事务sql在mysql端执行(存储过程)
+
+
+3. 总结
+![总结](https://raw.githubusercontent.com/20160805xcy/staticSource/master/seckill/image/%E5%88%86%E6%9E%90%E6%80%BB%E7%BB%93.png)
+
+红色部分是可能会出现高并发的点.绿色代表没有影响.
+
+1. 为什么要单独获取系统时间. 用户会不断刷新页面,将css.js资源改成CDN方式获取,以达到快速的响应,同时减少自己系统的压力.
+
+2. Java获取系统时间不用优化,访问一次内存(Cacheline)大约10ns.(折算下来一秒钟可以访问1亿次)
+
+3. 地址接口分析:无法使用CDN缓存,CDN只适合放一些静态资源,js,css,一些不会变化的数据.  可以使用redis做缓存. 一致性维护成本低.
